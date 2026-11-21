@@ -1,0 +1,751 @@
+/* ===================================================
+   VARIÁVEIS, RESET E TIPOGRAFIA
+   =================================================== */
+:root {
+    --fundo: #000000;                     /* Fundo totalmente preto */
+    --superficie: #0d0f17;                /* Superfície escura para cards e header */
+    --superficie-elevada: #131724;       /* Superfície para hover e destaque */
+    --borda: #1c2233;                     /* Cor suave para bordas e divisores */
+    --texto: #ffffff;                     /* Texto principal branco */
+    --texto-suave: #f5f3ff;               /* Texto suave solicitado: #f5f3ff */
+    --primeira: #00CFE8;                  /* Azul Ciano vibrante para detalhes e botões */
+    --primeira-escura: #009cb0;           /* Ciano escuro para hover */
+    --desdaques: #2563eb;                 /* Destaque em AZUL marcante (substituindo o laranja) */
+    --destaque: #2563eb;                  /* Alias para compatibilidade */
+    --raio: 16px;                         /* Arredondamento padrão */
+    --sombra: 0 10px 30px rgba(0, 0, 0, 0.7);
+    --sombra-azul: 0 0 25px rgba(37, 99, 235, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: var(--fundo);
+    color: var(--texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===================================================
+   TIPOGRAFIA
+   =================================================== */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--texto);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin-bottom: 1.25rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 4px;
+    background: var(--desdaques);
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.6rem;
+    color: var(--texto);
+}
+
+h4 {
+    font-size: 1rem;
+    margin-top: 0.85rem;
+    margin-bottom: 0.35rem;
+    color: var(--primeira);
+}
+
+p {
+    color: var(--texto-suave);
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+a {
+    color: var(--primeira);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+a:hover {
+    color: var(--desdaques);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ===================================================
+   LAYOUT E CONTAINERS
+   =================================================== */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem;
+}
+
+/* ===================================================
+   CABEÇALHO E NAVEGAÇÃO NO TOPO
+   =================================================== */
+.cabeçalho {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(13, 15, 23, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borda);
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--texto);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.logo span {
+    color: var(--desdaques);
+}
+
+.logo:hover {
+    color: var(--primeira);
+}
+
+.cabeçalho nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.cabeçalho nav a {
+    color: var(--texto-suave);
+    font-weight: 500;
+    font-size: 0.98rem;
+    text-transform: capitalize;
+    position: relative;
+    padding: 0.4rem 0.2rem;
+}
+
+.cabeçalho nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--primeira);
+    transition: width 0.3s ease;
+}
+
+.cabeçalho nav a:hover {
+    color: var(--primeira);
+}
+
+.cabeçalho nav a:hover::after {
+    width: 100%;
+}
+
+.cabeçalho nav a.link-sair {
+    color: #ef4444;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.cabeçalho nav a.link-sair::after {
+    display: none;
+}
+
+.cabeçalho nav a.link-sair:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+/* ===================================================
+   HERO / INÍCIO
+   =================================================== */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3.5rem;
+    min-height: calc(85vh - 70px);
+}
+
+.hero-texto {
+    flex: 1.2;
+}
+
+.hero h2 {
+    color: var(--primeira);
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+}
+
+.hero h2::after {
+    display: none; /* remove barra decorativa do h2 no hero */
+}
+
+.hero p {
+    margin-bottom: 1.75rem;
+    line-height: 1.7;
+}
+
+.botoes-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.foto {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--desdaques); /* Novo azul de destaque */
+    box-shadow: var(--sombra-azul);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.foto:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 35px rgba(37, 99, 235, 0.6);
+}
+
+/* ===================================================
+   BOTÕES
+   =================================================== */
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.75rem;
+    background: var(--primeira);
+    color: #000000;
+    font-weight: 700;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 207, 232, 0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background: var(--primeira-escura);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 207, 232, 0.4);
+}
+
+.botao-claro {
+    background: transparent;
+    color: var(--primeira);
+    border: 2px solid var(--primeira);
+    box-shadow: none;
+}
+
+.botao-claro:hover {
+    background: var(--primeira);
+    color: #000000;
+    box-shadow: 0 6px 20px rgba(0, 207, 232, 0.3);
+}
+
+/* ===================================================
+   SEÇÃO SOBRE
+   =================================================== */
+.sobre {
+    background: var(--superficie);
+    border-radius: var(--raio);
+    border: 1px solid var(--borda);
+    padding: 3.5rem;
+    box-shadow: var(--sombra);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.sobre-conteudo p {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+}
+
+.sobre-conteudo p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===================================================
+   SEÇÃO TÓPICOS E MATÉRIAS (CARDS & COLUNAS)
+   =================================================== */
+.colunas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.cartao {
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 2rem 1.6rem;
+    box-shadow: var(--sombra);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cartao:hover {
+    transform: translateY(-6px);
+    border-color: var(--desdaques);
+    background: var(--superficie-elevada);
+    box-shadow: var(--sombra-azul);
+}
+
+/* Listas dentro dos cartões de tópicos */
+.cartao ul {
+    list-style: none;
+    margin-top: 0.75rem;
+}
+
+.cartao ul li {
+    color: var(--texto-suave);
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.98rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.cartao ul li:last-child {
+    border-bottom: none;
+}
+
+.cartao ul li::before {
+    content: "•";
+    color: var(--desdaques);
+    font-size: 1.4rem;
+    line-height: 0;
+    transition: color 0.2s ease;
+}
+
+.cartao:hover ul li::before {
+    color: var(--primeira);
+}
+
+.cartao ul li:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+/* ===================================================
+   CARDS DE MATÉRIAS
+   =================================================== */
+.cartao-materia {
+    border-top: 3px solid var(--desdaques);
+}
+
+.cartao-icone {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.cartao-materia h3 {
+    color: #ffffff;
+}
+
+.cartao-materia p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 0.75rem;
+}
+
+.link-materia {
+    margin-top: auto;
+    padding-top: 1rem;
+    color: var(--primeira);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+}
+
+.link-materia:hover {
+    color: var(--desdaques);
+    transform: translateX(4px);
+}
+
+/* ===================================================
+   SEÇÃO CONTATO
+   =================================================== */
+.contato-box {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-top: 1.5rem;
+    border-top: 3px solid var(--primeira);
+}
+
+.contato-box p {
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin: 0 auto 2rem;
+}
+
+.contato-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+/* ===================================================
+   RODAPÉ
+   =================================================== */
+.rodape {
+    background: var(--superficie);
+    border-top: 1px solid var(--borda);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.rodape h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--texto);
+    margin-bottom: 0.35rem;
+}
+
+.rodape h6 {
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--texto-suave);
+    opacity: 0.85;
+}
+
+/* ===================================================
+   RESPONSIVIDADE (MOBILE E TABLETS)
+   =================================================== */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2.5rem;
+        padding-top: 2rem;
+    }
+
+    .hero-texto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .botoes-hero {
+        justify-content: center;
+    }
+
+    .foto {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cabeçalho {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .cabeçalho nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.85rem;
+    }
+
+    .container {
+        padding: 3rem 1.25rem;
+    }
+
+    .sobre {
+        padding: 2rem 1.25rem;
+    }
+
+    .colunas {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ===================================================
+   SEÇÃO SOBRE
+   =================================================== */
+.sobre {
+    background: var(--superficie);
+    border-radius: var(--raio);
+    border: 1px solid var(--borda);
+    padding: 3.5rem;
+    box-shadow: var(--sombra);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.sobre-conteudo p {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+}
+
+.sobre-conteudo p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===================================================
+   SEÇÃO TÓPICOS E MATÉRIAS (CARDS & COLUNAS)
+   =================================================== */
+.colunas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.cartao {
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 2rem 1.6rem;
+    box-shadow: var(--sombra);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cartao:hover {
+    transform: translateY(-6px);
+    border-color: var(--desdaques);
+    background: var(--superficie-elevada);
+    box-shadow: var(--sombra-azul);
+}
+
+/* Listas dentro dos cartões de tópicos */
+.cartao ul {
+    list-style: none;
+    margin-top: 0.75rem;
+}
+
+.cartao ul li {
+    color: var(--texto-suave);
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.98rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.cartao ul li:last-child {
+    border-bottom: none;
+}
+
+.cartao ul li::before {
+    content: "•";
+    color: var(--desdaques);
+    font-size: 1.4rem;
+    line-height: 0;
+    transition: color 0.2s ease;
+}
+
+.cartao:hover ul li::before {
+    color: var(--primeira);
+}
+
+.cartao ul li:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+/* ===================================================
+   CARDS DE MATÉRIAS
+   =================================================== */
+.cartao-materia {
+    border-top: 3px solid var(--desdaques);
+}
+
+.cartao-icone {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.cartao-materia h3 {
+    color: #ffffff;
+}
+
+.cartao-materia p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 0.75rem;
+}
+
+.link-materia {
+    margin-top: auto;
+    padding-top: 1rem;
+    color: var(--primeira);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+}
+
+.link-materia:hover {
+    color: var(--desdaques);
+    transform: translateX(4px);
+}
+
+/* ===================================================
+   SEÇÃO CONTATO
+   =================================================== */
+.contato-box {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-top: 1.5rem;
+    border-top: 3px solid var(--primeira);
+}
+
+.contato-box p {
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin: 0 auto 2rem;
+}
+
+.contato-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+/* ===================================================
+   RODAPÉ
+   =================================================== */
+.rodape {
+    background: var(--superficie);
+    border-top: 1px solid var(--borda);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.rodape h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--texto);
+    margin-bottom: 0.35rem;
+}
+
+.rodape h6 {
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--texto-suave);
+    opacity: 0.85;
+}
+
+/* ===================================================
+   RESPONSIVIDADE (MOBILE E TABLETS)
+   =================================================== */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2.5rem;
+        padding-top: 2rem;
+    }
+
+    .hero-texto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .botoes-hero {
+        justify-content: center;
+    }
+
+    .foto {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cabeçalho {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .cabeçalho nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.85rem;
+    }
+
+    .container {
+        padding: 3rem 1.25rem;
+    }
+
+    .sobre {
+        padding: 2rem 1.25rem;
+    }
+
+    .colunas {
+        grid-template-columns: 1fr;
+    }
+}
