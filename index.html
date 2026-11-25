@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geração Z Filmes</title>
+    <title>Geração Z</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="cabeçalho">
-        <a class="logo" href="#inicio">Geração Z <span>Filmes</span></a>
+        <a class="logo" href="#inicio">Universo Geração Z</a>
 
-        <nav>
-            <a href="#sobre">sobre</a>
-            <a href="#topicos">topicos</a>
-            <a href="#materia">materia</a>
-            <a href="#contato">contato</a>
-            <a href="#login" class="link-sair">sair</a>
+        <nav class="navegacao">
+            <li><a href="#sobre">sobre</a></li> 
+            <li><a href="#topicos">topicos</a></li>
+            <li><a href="materia.html">materia</a></li>
+            <li><a href="#contato">contato</a></li>
         </nav>
     </header>
 
@@ -124,23 +123,19 @@
             <h2>Matérias</h2>
             <div class="colunas" id="lista-materia">
                 <article class="cartao cartao-materia">
-                    <img src="img/Noite de Cinema com Pipoca e Película.png" 
-                    alt="Imagem ilustrativa para materia filmes"
-                    />
-                    <div class="cartao-icone">
-                         <h3>Filmes</h3>
-                         <p>O cinema transforma histórias em experiências inesquecíveis.</p>
-                         <h4>O que torna um filme especial?</h4>
-                         <p>Uma boa história, personagens marcantes e emoção.</p>
-                        <a class="link-materia" href="#">Ver matéria</a>
+                    <img class="imagem-materia" src="img/Noite de Cinema com Pipoca e Película.png" alt="Imagem ilustrativa para matéria filmes">
+                    <div class="cartao-conteudo">
+                        <h3>Filmes</h3>
+                        <p>O cinema transforma histórias em experiências inesquecíveis.</p>
+                        <h4>O que torna um filme especial?</h4>
+                        <p>Uma boa história, personagens marcantes e emoção.</p>
+                        <a class="link-materia" href="materia_filmes.html">Ver matéria</a>
                     </div>
                 </article>
 
                 <article class="cartao cartao-materia">
-                    <img src="img/Notícias em Neon Roxo e Azul.png" 
-                    alt="Imagem ilustrativa para a materia Serie"
-                    />
-                    <div class="cartao-icone">
+                    <img class="imagem-materia" src="img/Notícias em Neon Roxo e Azul.png" alt="Imagem ilustrativa para matéria séries">
+                    <div class="cartao-conteudo">
                         <h3>Séries</h3>
                         <p>Grandes histórias não terminam em apenas um episódio.</p>
                         <h4>Por que somos apaixonados por séries?</h4>
@@ -150,9 +145,8 @@
                 </article>
 
                 <article class="cartao cartao-materia">
-                    <img src="img/Pôster Anime em Energia Roxa.png" 
-                    alt="Imagem ilustrativa para a materia Anime">
-                    <div class="cartao-icone">
+                    <img class="imagem-materia" src="img/Pôster Anime em Energia Roxa.png" alt="Imagem ilustrativa para matéria animes">
+                    <div class="cartao-conteudo">
                         <h3>Animes</h3>
                         <p>Universos extraordinários, aventuras e personagens inesquecíveis.</p>
                         <h4>O que torna os animes tão especiais?</h4>
@@ -162,9 +156,8 @@
                 </article>
 
                 <article class="cartao cartao-materia">
-                    <img src="img/Setup gamer neon com consoles e nostalgia retro.png" 
-                    alt="Imagem ilustrativa para a materia videogames">
-                    <div class="cartao-icone">
+                    <img class="imagem-materia" src="img/Setup gamer neon com consoles e nostalgia retro.png" alt="Imagem ilustrativa para matéria videogames">
+                    <div class="cartao-conteudo">
                         <h3>Videogames</h3>
                         <p>Mais do que jogar, é viver grandes aventuras.</p>
                         <h4>O que faz dos games uma experiência única?</h4>
@@ -189,8 +182,10 @@
     </main>
 
     <footer class="rodape">
-        <h5>Nunes Play Mídia - Produções</h5>
+        <h5>&copy; 2026 Nunes Play Mídia - Produções</h5>
         <h6>Feito com HTML, CSS e JAVASCRIPT</h6>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

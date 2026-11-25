@@ -7,10 +7,10 @@
     --superficie-elevada: #131724;       /* Superfície para hover e destaque */
     --borda: #1c2233;                     /* Cor suave para bordas e divisores */
     --texto: #ffffff;                     /* Texto principal branco */
-    --texto-suave: #f5f3ff;               /* Texto suave solicitado: #f5f3ff */
-    --primeira: #00CFE8;                  /* Azul Ciano vibrante para detalhes e botões */
+    --texto-suave: #f5f3ff;               /* Texto suave: #f5f3ff */
+    --primeira: #00CFE8;                  /* Azul Ciano vibrante para botões e detalhes */
     --primeira-escura: #009cb0;           /* Ciano escuro para hover */
-    --desdaques: #2563eb;                 /* Destaque em AZUL marcante (substituindo o laranja) */
+    --desdaques: #2563eb;                 /* Azul de destaque principal */
     --destaque: #2563eb;                  /* Alias para compatibilidade */
     --raio: 16px;                         /* Arredondamento padrão */
     --sombra: 0 10px 30px rgba(0, 0, 0, 0.7);
@@ -25,6 +25,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -33,6 +34,7 @@ body {
     color: var(--texto);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
 }
 
 /* ===================================================
@@ -45,13 +47,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-size: clamp(2rem, 5vw, 3.4rem);
     margin-bottom: 0.75rem;
     letter-spacing: -0.5px;
 }
 
 h2 {
-    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
     margin-bottom: 1.25rem;
     position: relative;
     display: inline-block;
@@ -112,7 +114,7 @@ img {
 }
 
 /* ===================================================
-   CABEÇALHO E NAVEGAÇÃO NO TOPO
+   CABEÇALHO E NAVEGAÇÃO
    =================================================== */
 .cabeçalho {
     position: sticky;
@@ -122,7 +124,7 @@ img {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: rgba(13, 15, 23, 0.92);
+    background: rgba(13, 15, 23, 0.94);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--borda);
@@ -160,6 +162,7 @@ img {
     text-transform: capitalize;
     position: relative;
     padding: 0.4rem 0.2rem;
+    transition: color 0.25s ease;
 }
 
 .cabeçalho nav a::after {
@@ -173,19 +176,21 @@ img {
     transition: width 0.3s ease;
 }
 
-.cabeçalho nav a:hover {
+.cabeçalho nav a:hover,
+.cabeçalho nav a.link-ativo {
     color: var(--primeira);
 }
 
-.cabeçalho nav a:hover::after {
+.cabeçalho nav a:hover::after,
+.cabeçalho nav a.link-ativo::after {
     width: 100%;
 }
 
 .cabeçalho nav a.link-sair {
     color: #ef4444;
-    padding: 0.3rem 0.8rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 6px;
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    border: 1px solid rgba(239, 68, 68, 0.35);
 }
 
 .cabeçalho nav a.link-sair::after {
@@ -221,7 +226,7 @@ img {
 }
 
 .hero h2::after {
-    display: none; /* remove barra decorativa do h2 no hero */
+    display: none;
 }
 
 .hero p {
@@ -236,12 +241,18 @@ img {
     align-items: center;
 }
 
+.hero-imagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .foto {
     width: 280px;
     height: 280px;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid var(--desdaques); /* Novo azul de destaque */
+    border: 5px solid var(--desdaques);
     box-shadow: var(--sombra-azul);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -267,6 +278,7 @@ img {
     box-shadow: 0 4px 15px rgba(0, 207, 232, 0.25);
     transition: all 0.3s ease;
     cursor: pointer;
+    min-height: 48px;
 }
 
 .botao:hover {
@@ -317,7 +329,7 @@ img {
    =================================================== */
 .colunas {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
@@ -386,18 +398,34 @@ img {
    =================================================== */
 .cartao-materia {
     border-top: 3px solid var(--desdaques);
+    padding: 1.4rem;
 }
 
-.cartao-icone {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
+.imagem-materia {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--borda);
+    transition: transform 0.35s ease;
 }
 
-.cartao-materia h3 {
+.cartao-materia:hover .imagem-materia {
+    transform: scale(1.02);
+}
+
+.cartao-conteudo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.cartao-conteudo h3 {
     color: #ffffff;
 }
 
-.cartao-materia p {
+.cartao-conteudo p {
     font-size: 0.95rem;
     line-height: 1.55;
     margin-bottom: 0.75rem;
@@ -410,7 +438,7 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    font-size: 0.95rem;
+    font-size: 0.98rem;
 }
 
 .link-materia:hover {
@@ -467,14 +495,17 @@ img {
 }
 
 /* ===================================================
-   RESPONSIVIDADE (MOBILE E TABLETS)
+   CONFIGURAÇÃO PARA MODO CELULAR E TABLETS
    =================================================== */
-@media (max-width: 900px) {
+
+/* Tablets e Telas Médias */
+@media (max-width: 960px) {
     .hero {
         flex-direction: column-reverse;
         text-align: center;
         gap: 2.5rem;
         padding-top: 2rem;
+        min-height: auto;
     }
 
     .hero-texto {
@@ -488,264 +519,392 @@ img {
     }
 
     .foto {
-        width: 220px;
-        height: 220px;
+        width: 240px;
+        height: 240px;
+    }
+
+    .colunas {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* Modo Celular (Smartphones: até 768px) */
 @media (max-width: 768px) {
-    .cabeçalho {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .cabeçalho nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.85rem;
-    }
-
     .container {
         padding: 3rem 1.25rem;
     }
 
+    /* Cabeçalho e Navegação no Celular (sem botão hambúrguer) */
+    .cabeçalho {
+        flex-direction: column;
+        gap: 0.85rem;
+        padding: 0.85rem 1rem;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .cabeçalho nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem 1rem;
+        width: 100%;
+    }
+
+    .cabeçalho nav a {
+        font-size: 0.95rem;
+        padding: 0.35rem 0.5rem;
+    }
+
+    .cabeçalho nav a.link-sair {
+        padding: 0.25rem 0.65rem;
+    }
+
+    /* Hero no Celular */
+    .hero {
+        padding-top: 1.5rem;
+        gap: 2rem;
+    }
+
+    .foto {
+        width: 210px;
+        height: 210px;
+        border-width: 4px;
+    }
+
+    .hero-texto h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero-texto h2 {
+        font-size: 1.2rem;
+    }
+
+    .hero-texto p {
+        font-size: 0.98rem;
+    }
+
+    .botoes-hero {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .botoes-hero .botao {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Seção Sobre no Celular */
     .sobre {
+        padding: 2rem 1.25rem;
+        border-radius: 14px;
+    }
+
+    .sobre-conteudo p {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    /* Colunas no Celular (1 coluna única para cada card) */
+    .colunas {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .cartao {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .imagem-materia {
+        height: 200px;
+    }
+
+    /* Seção Contato no Celular */
+    .contato-box {
         padding: 2rem 1.25rem;
     }
 
-    .colunas {
-        grid-template-columns: 1fr;
+    .contato-box p {
+        font-size: 1rem;
+    }
+
+    .contato-acoes {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .contato-acoes .botao {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Rodapé no Celular */
+    .rodape {
+        padding: 2rem 1.25rem;
+        margin-top: 3rem;
+    }
+}
+
+/* Celulares Menores (telas até 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 2.25rem 1rem;
+    }
+
+    .cabeçalho nav {
+        gap: 0.4rem 0.75rem;
+    }
+
+    .cabeçalho nav a {
+        font-size: 0.88rem;
+    }
+
+    .foto {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hero-texto h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-texto h2 {
+        font-size: 1.1rem;
+    }
+
+    .imagem-materia {
+        height: 175px;
     }
 }
 
 
 /* ===================================================
-   SEÇÃO SOBRE
+   PÁGINAS DE ARTIGOS / MATÉRIAS COMPLETAS
    =================================================== */
-.sobre {
+.artigo-container {
+    max-width: 900px;
+    padding-top: 2.5rem;
+}
+
+.artigo-navegacao-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.botao-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primeira);
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 207, 232, 0.08);
+    border: 1px solid rgba(0, 207, 232, 0.25);
+    border-radius: 999px;
+    transition: all 0.25s ease;
+}
+
+.botao-voltar:hover {
+    background: var(--primeira);
+    color: #000000;
+    transform: translateX(-4px);
+}
+
+.tag-categoria {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(37, 99, 235, 0.18);
+    border: 1px solid var(--desdaques);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 999px;
+}
+
+.artigo-completo {
     background: var(--superficie);
-    border-radius: var(--raio);
     border: 1px solid var(--borda);
-    padding: 3.5rem;
+    border-radius: var(--raio);
+    padding: 3rem 2.5rem;
     box-shadow: var(--sombra);
-    margin-top: 1rem;
+    margin-bottom: 3.5rem;
+}
+
+.artigo-cabecalho {
     margin-bottom: 2rem;
 }
 
-.sobre-conteudo p {
-    font-size: 1.08rem;
-    line-height: 1.8;
+.artigo-titulo {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.3;
     margin-bottom: 1.25rem;
+    color: #ffffff;
 }
 
-.sobre-conteudo p:last-child {
-    margin-bottom: 0;
-}
-
-/* ===================================================
-   SEÇÃO TÓPICOS E MATÉRIAS (CARDS & COLUNAS)
-   =================================================== */
-.colunas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-.cartao {
-    background: var(--superficie);
-    border: 1px solid var(--borda);
-    border-radius: var(--raio);
-    padding: 2rem 1.6rem;
-    box-shadow: var(--sombra);
+.artigo-meta {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    transition: all 0.35s ease;
-    position: relative;
-    overflow: hidden;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    opacity: 0.85;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--borda);
 }
 
-.cartao:hover {
-    transform: translateY(-6px);
-    border-color: var(--desdaques);
+.artigo-destaque-imagem {
+    margin: 2rem 0 2.5rem;
+}
+
+.artigo-destaque-imagem img {
+    width: 100%;
+    max-height: 440px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid var(--borda);
+}
+
+.legenda-imagem {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    opacity: 0.7;
+    text-align: center;
+    margin-top: 0.6rem;
+    font-style: italic;
+}
+
+.artigo-conteudo {
+    line-height: 1.85;
+}
+
+.artigo-lead {
+    font-size: 1.2rem;
+    line-height: 1.75;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    border-left: 3px solid var(--primeira);
+    padding-left: 1.25rem;
+}
+
+.artigo-conteudo h2 {
+    font-size: 1.6rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.artigo-conteudo p {
+    font-size: 1.08rem;
+    margin-bottom: 1.5rem;
+}
+
+.citacao-destaque {
     background: var(--superficie-elevada);
+    border-left: 4px solid var(--desdaques);
+    border-radius: 0 12px 12px 0;
+    padding: 1.5rem 1.75rem;
+    margin: 2rem 0;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #ffffff;
     box-shadow: var(--sombra-azul);
 }
 
-/* Listas dentro dos cartões de tópicos */
-.cartao ul {
+.artigo-topicos-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.artigo-topicos-box ul {
     list-style: none;
-    margin-top: 0.75rem;
 }
 
-.cartao ul li {
+.artigo-topicos-box ul li {
+    padding: 0.6rem 0;
     color: var(--texto-suave);
-    padding: 0.55rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.98rem;
-    transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.cartao ul li:last-child {
+.artigo-topicos-box ul li:last-child {
     border-bottom: none;
 }
 
-.cartao ul li::before {
-    content: "•";
-    color: var(--desdaques);
-    font-size: 1.4rem;
-    line-height: 0;
-    transition: color 0.2s ease;
-}
-
-.cartao:hover ul li::before {
+.artigo-topicos-box ul li strong {
     color: var(--primeira);
 }
 
-.cartao ul li:hover {
-    color: #ffffff;
-    transform: translateX(4px);
-}
-
-/* ===================================================
-   CARDS DE MATÉRIAS
-   =================================================== */
-.cartao-materia {
-    border-top: 3px solid var(--desdaques);
-}
-
-.cartao-icone {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-}
-
-.cartao-materia h3 {
-    color: #ffffff;
-}
-
-.cartao-materia p {
-    font-size: 0.95rem;
-    line-height: 1.55;
-    margin-bottom: 0.75rem;
-}
-
-.link-materia {
-    margin-top: auto;
-    padding-top: 1rem;
-    color: var(--primeira);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.95rem;
-}
-
-.link-materia:hover {
-    color: var(--desdaques);
-    transform: translateX(4px);
-}
-
-/* ===================================================
-   SEÇÃO CONTATO
-   =================================================== */
-.contato-box {
-    text-align: center;
-    padding: 3rem 2rem;
-    margin-top: 1.5rem;
-    border-top: 3px solid var(--primeira);
-}
-
-.contato-box p {
-    font-size: 1.15rem;
-    max-width: 650px;
-    margin: 0 auto 2rem;
-}
-
-.contato-acoes {
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-}
-
-/* ===================================================
-   RODAPÉ
-   =================================================== */
-.rodape {
-    background: var(--superficie);
+.artigo-rodape {
+    margin-top: 3rem;
+    padding-top: 2rem;
     border-top: 1px solid var(--borda);
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    margin-top: 4rem;
 }
 
-.rodape h5 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--texto);
-    margin-bottom: 0.35rem;
+.artigo-autor-box {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: var(--superficie-elevada);
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--borda);
 }
 
-.rodape h6 {
-    font-size: 0.88rem;
-    font-weight: 400;
-    color: var(--texto-suave);
-    opacity: 0.85;
+.autor-avatar {
+    font-size: 2.5rem;
 }
 
-/* ===================================================
-   RESPONSIVIDADE (MOBILE E TABLETS)
-   =================================================== */
-@media (max-width: 900px) {
-    .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-        gap: 2.5rem;
-        padding-top: 2rem;
-    }
+.autor-info h4 {
+    margin: 0 0 0.25rem;
+    font-size: 1.05rem;
+    color: #ffffff;
+}
 
-    .hero-texto {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.autor-info p {
+    margin: 0;
+    font-size: 0.92rem;
+}
 
-    .botoes-hero {
-        justify-content: center;
-    }
+.artigos-relacionados {
+    margin-top: 2rem;
+}
 
-    .foto {
-        width: 220px;
-        height: 220px;
-    }
+.artigos-relacionados h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
 }
 
 @media (max-width: 768px) {
-    .cabeçalho {
+    .artigo-completo {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .artigo-meta {
         flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 0.4rem;
     }
 
-    .cabeçalho nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.85rem;
+    .artigo-destaque-imagem img {
+        max-height: 250px;
     }
 
-    .container {
-        padding: 3rem 1.25rem;
-    }
-
-    .sobre {
-        padding: 2rem 1.25rem;
-    }
-
-    .colunas {
-        grid-template-columns: 1fr;
+    .artigo-lead {
+        font-size: 1.08rem;
     }
 }
